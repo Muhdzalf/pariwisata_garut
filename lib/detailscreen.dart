@@ -8,9 +8,28 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Column(children: [
-        Image.network(place.imageAsset),
+      body: Column(children: [
+        Stack(children: [
+          Image.network(place.imageAsset),
+          Positioned(
+            top: 30,
+            left: 10,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: CircleAvatar(
+                backgroundColor: Colors.white.withOpacity(0.6),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.blue,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
+              ),
+            ),
+          )
+        ]),
         SizedBox(
           height: 10,
         ),
@@ -83,7 +102,7 @@ class DetailsScreen extends StatelessWidget {
                 );
               }).toList(),
             ))
-      ])),
+      ]),
     );
   }
 }
