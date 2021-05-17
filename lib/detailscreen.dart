@@ -11,21 +11,28 @@ class DetailsScreen extends StatelessWidget {
       body: Column(children: [
         Stack(children: [
           Image.network(place.imageAsset),
-          Positioned(
-            top: 30,
-            left: 10,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: CircleAvatar(
-                backgroundColor: Colors.white.withOpacity(0.6),
-                child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Colors.blue,
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white.withOpacity(0.6),
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.blue,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
+                  ),
+                  FavoriteButton()
+                ],
               ),
             ),
           )
@@ -104,5 +111,26 @@ class DetailsScreen extends StatelessWidget {
             ))
       ]),
     );
+  }
+}
+
+class FavoriteButton extends StatefulWidget {
+  @override
+  _FavoriteButtonState createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool isFavorite = false;
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
+        color: isFavorite ? Colors.red : Colors.grey,
+        iconSize: 30,
+        onPressed: () {
+          setState(() {
+            isFavorite = !isFavorite;
+          });
+        });
   }
 }
