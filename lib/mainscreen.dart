@@ -27,7 +27,10 @@ class MainScreen extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: SizedBox(
-                          height: 90, child: Image.network(place.imageAsset)),
+                          height: 90,
+                          child: Hero(
+                              tag: 'wisata ${place.name}',
+                              child: Image.network(place.imageAsset))),
                     ),
                     Expanded(
                       flex: 2,

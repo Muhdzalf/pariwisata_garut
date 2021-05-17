@@ -10,7 +10,9 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       body: Column(children: [
         Stack(children: [
-          Image.network(place.imageAsset),
+          Hero(
+              tag: 'pariwisata ${place.name}',
+              child: Image.network(place.imageAsset)),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
